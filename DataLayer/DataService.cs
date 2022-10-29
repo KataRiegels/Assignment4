@@ -185,6 +185,21 @@ namespace DataLayer
 
         }
 
+        // Returns a list of Orders - Returns all orders if shipName not defined. Otherwise, returns orders with given ShipName
+        public IList<Order> GetOrders(string shipName = null)
+        {
+            if (!string.IsNullOrEmpty(shipName))
+            {
+                //IList<Order> orders = _db.Orders.Where(x => x.ShipName == shipName).ToList();
+                return _db.Orders.Where(x => x.ShipName == shipName).ToList();
+
+            }
+            
+                //IList<Order> orders = _db.Orders.ToList();
+            return  _db.Orders.ToList();
+
+        }    
+
         public IList<OrderDetails> GetOrderDetails(int id)
         {
             IList<OrderDetails> orderDetails = _db.OrderDetails.Where(x => x.OrderId == id).ToList();

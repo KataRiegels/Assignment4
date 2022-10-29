@@ -12,7 +12,7 @@ namespace DataLayer.Model
         public DateTime OrderDate { get; set; }
         //public DateTime ShippingDate { get; set; }
         public DateTime RequiredDate { get; set; }
-        public DateTime ShippedDate { get; set; }
+        public DateTime? ShippedDate { get; set; }
         public int? Freight { get; set; }
         public string? ShipName { get; set; }
         public string? ShipAddress { get; set; }

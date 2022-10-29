@@ -149,7 +149,9 @@ namespace Assignment4.Tests
         {
             var order = new Order();
             Assert.Equal(0, order.Id);
-            Assert.Equal(new DateTime(), order.ShippedDate);
+            //Assert.Equal(new DateTime(), order.ShippedDate); Makes no sense when it can be null - so this should ne assert(null
+            Assert.Null(order.ShippedDate);
+
             Assert.Equal(new DateTime(), order.RequiredDate);
             Assert.Null(order.OrderDetails);
             Assert.Null(order.ShipName);
@@ -166,7 +168,6 @@ namespace Assignment4.Tests
             Assert.Equal("Queso Cabrales", order.OrderDetails?.First().Product?.Name);
             Assert.Equal("Dairy Products", order.OrderDetails?.First().Product?.Category?.Name);
         }
-#if COMMENT
         [Fact]
         public void GetOrders()
         {
@@ -175,6 +176,7 @@ namespace Assignment4.Tests
             Assert.Equal(830, orders.Count);
         }
 
+#if COMMENT
 
         /* order details */
         [Fact]
