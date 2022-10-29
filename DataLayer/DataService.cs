@@ -179,7 +179,7 @@ namespace DataLayer
         {
 
             Order order = _db.Orders.FirstOrDefault(x => x.Id == id);
-            order.OrderDetails = GetOrderDetailsByOrderId(order.Id);
+            order.OrderDetails = ActualGetOrderDetailsByOrderId(order.Id);
 
             return order;
 
@@ -217,6 +217,21 @@ namespace DataLayer
 
         }
 
+        public IList<OrderDetails> ActualGetOrderDetailsByOrderId(int orderId)
+        {
+            IList<OrderDetails> orderDetails = _db.OrderDetails.Where(x => x.OrderId == orderId).ToList();
+            //orderDetails.Product = GetProduct(orderDetails.ProductId);
+
+            foreach (var detail in orderDetails)
+            {
+                detail.Product = GetProduct(detail.ProductId);
+            }
+
+            return orderDetails;
+        }
+
+        
+         //Getting actual OrderDetails objects
         public IList<OrderDetails> GetOrderDetailsByOrderId(int orderId)
         {
             IList<OrderDetails> orderDetails = _db.OrderDetails.Where(x => x.OrderId == orderId).ToList();
@@ -230,6 +245,21 @@ namespace DataLayer
             return orderDetails;
         }
 
+        // Gets a list of OrderDetails with specified Order and Product
+        public IList<OrderDetails> GetOrderDetailsByProductId(int productId)
+        {
+            IList<OrderDetails> orderDetails = _db.OrderDetails.Where(x => x.ProductId == productId).OrderBy(x => x.OrderId).ToList();
+            //orderDetails.Product = GetProduct(orderDetails.ProductId);
+
+            foreach (var detail in orderDetails)
+            {
+                detail.Product = GetProduct(detail.ProductId);
+                detail.Order = GetOrder(detail.OrderId);
+            }
+
+            return orderDetails;
+        }
+         
 
 
     }
