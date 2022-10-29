@@ -179,30 +179,47 @@ namespace DataLayer
         {
 
             Order order = _db.Orders.FirstOrDefault(x => x.Id == id);
-            order.OrderDetails = GetOrderDetails(order.Id);
+            order.OrderDetails = GetOrderDetailsByOrderId(order.Id);
 
             return order;
 
         }
 
         // Returns a list of Orders - Returns all orders if shipName not defined. Otherwise, returns orders with given ShipName
+        // How it should be
+        //public IList<Order> GetOrders(string shipName = null)
+        //{
+        //    if (!string.IsNullOrEmpty(shipName))
+        //    {
+        //        //IList<Order> orders = _db.Orders.Where(x => x.ShipName == shipName).ToList();
+        //        return _db.Orders.Where(x => x.ShipName == shipName).ToList();
+
+        //    }
+        //        //IList<Order> orders = _db.Orders.ToList();
+        //    return  _db.Orders.ToList();
+
+        //}    
+
+        
+        // Bad version of the above, but may be what was meant in assignment
+        // !!! NOT FIXED TO FIT REQUIREMENTS!!! 
         public IList<Order> GetOrders(string shipName = null)
         {
+            IList<Order> orders = _db.Orders.Where(x => x.ShipName == shipName).ToList();
             if (!string.IsNullOrEmpty(shipName))
             {
                 //IList<Order> orders = _db.Orders.Where(x => x.ShipName == shipName).ToList();
                 return _db.Orders.Where(x => x.ShipName == shipName).ToList();
 
             }
-            
-                //IList<Order> orders = _db.Orders.ToList();
-            return  _db.Orders.ToList();
+            //IList<Order> orders = _db.Orders.ToList();
+            return _db.Orders.ToList();
 
-        }    
+        }
 
-        public IList<OrderDetails> GetOrderDetails(int id)
+        public IList<OrderDetails> GetOrderDetailsByOrderId(int orderId)
         {
-            IList<OrderDetails> orderDetails = _db.OrderDetails.Where(x => x.OrderId == id).ToList();
+            IList<OrderDetails> orderDetails = _db.OrderDetails.Where(x => x.OrderId == orderId).ToList();
             //orderDetails.Product = GetProduct(orderDetails.ProductId);
 
             foreach (var detail in orderDetails)
