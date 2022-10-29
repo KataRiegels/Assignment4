@@ -173,13 +173,13 @@ namespace DataLayer
         order details.Each order detail should include the product which must include
         the category. */
 
-        
+
 
         public Order GetOrder(int id)
         {
 
-            Order order = _db.Orders.FirstOrDefault(x => x.OrderId == id);
-            order.OrderDetails = GetOrderDetails(order.OrderId);
+            Order order = _db.Orders.FirstOrDefault(x => x.Id == id);
+            order.OrderDetails = GetOrderDetails(order.Id);
 
             return order;
 

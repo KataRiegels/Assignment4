@@ -5,7 +5,7 @@ namespace DataLayer.Model
     public class Order
     {
         //[ForeignKey("OrderDetails")]
-        public int OrderId { get; set; }
+        public int Id { get; set; }
 
         public string CustomerId { get; set; }
         public int EmployeeId { get; set; }

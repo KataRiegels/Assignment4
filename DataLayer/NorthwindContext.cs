@@ -40,7 +40,7 @@ namespace DataLayer
 
 
             modelBuilder.Entity<Order>().ToTable("orders");
-            modelBuilder.Entity<Order>().Property(x => x.OrderId).HasColumnName("orderid");
+            modelBuilder.Entity<Order>().Property(x => x.Id).HasColumnName("orderid");
             modelBuilder.Entity<Order>().Property(x => x.CustomerId).HasColumnName("customerid");
             modelBuilder.Entity<Order>().Property(x => x.OrderDate).HasColumnName("orderdate");
             modelBuilder.Entity<Order>().Property(x => x.EmployeeId).HasColumnName("employeeid");
