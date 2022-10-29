@@ -1,12 +1,18 @@
-﻿namespace DataLayer.Model
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DataLayer.Model
 {
     public class OrderDetails
     {
-        public Order OrderID { get; set; }
-        public Product ProductId { get; set; }
-        public int unitprice { get; set; }
-        public int quantity { get; set; }
-        public int discount { get; set; }
+        //[ForeignKey("OrderId")]
+        public int OrderId { get; set; }
+        public int ProductId { get; set; }
+        public int UnitPrice { get; set; }
+        public int Quantity { get; set; }
+        public int Discount { get; set; }
 
+        //public IList<Order> Orders { get; } = new List<Order>();
+        public Product Product { get; set; }
+        public Order Order { get; set; }  
     }
 }
