@@ -23,8 +23,8 @@ namespace DataLayer
         public Category CreateCategory(Category category)
         {
             //Category category = new Category();
-            //var maxId = _db.Categories.Max(x => x.Id);
-            //category.Id = IDataService;
+            var maxId = _db.Categories.Max(x => x.Id);
+            category.Id = maxId + 1;
             //category.Name = name;
             //category.Description = description;
             _db.Categories.Add(category);
@@ -35,12 +35,19 @@ namespace DataLayer
 
         public bool DeleteCategory(int id)
         {
+            Console.WriteLine("before getcategory");
+            _db.Categories.Add(new Category() { Id = 50, Description = "before", Name = "Test" });
             var category = GetCategory(id);
             if (category == null)
             {
+                Console.WriteLine("hello");
+                _db.Categories.Add(new Category() { Id = 49, Description = "TEST", Name = "Test" });
+                _db.SaveChanges();
                 return false;
             }
-            _db.Categories.Remove(GetCategory(id));
+            _db.Categories.Add(new Category() { Id = 56, Description = "after", Name = "Test" });
+            Console.WriteLine("hello2");
+            _db.Categories.Remove(category);
             _db.SaveChanges();
             return true;
         }

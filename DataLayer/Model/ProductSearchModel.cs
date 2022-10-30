@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Model
 {
-    public class ProductSearchModel
+    public class ProductSearchModel : Product
     {
         public string? ProductName { get; set; }
         public string? CategoryName { get; set; }
