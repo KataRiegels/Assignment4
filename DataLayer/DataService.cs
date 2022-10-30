@@ -6,7 +6,7 @@ using System.Numerics;
 
 namespace DataLayer
 {
-    public class DataService
+    public class DataService: IDataService
     {
         private static NorthwindContext _db = new NorthwindContext();
         public IList<Category> GetCategories() 
@@ -14,19 +14,19 @@ namespace DataLayer
             return _db.Categories.ToList();
         }
 
-        public Category GetCategory(int id)
+        public Category? GetCategory(int id)
         {
             return _db.Categories.FirstOrDefault(x => x.Id == id);
  
         }
 
-        public Category CreateCategory(string name, string description)
+        public Category CreateCategory(Category category)
         {
-            Category category = new Category();
-            var maxId = _db.Categories.Max(x => x.Id);
-            category.Id = maxId + 1;
-            category.Name = name;
-            category.Description = description;
+            //Category category = new Category();
+            //var maxId = _db.Categories.Max(x => x.Id);
+            //category.Id = IDataService;
+            //category.Name = name;
+            //category.Description = description;
             _db.Categories.Add(category);
             _db.SaveChanges();  
         
