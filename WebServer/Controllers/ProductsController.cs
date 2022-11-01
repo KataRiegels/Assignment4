@@ -45,9 +45,9 @@ namespace WebServer.Controllers
         {
             var products = _dataService.GetProductsByCategory(id);
 
-            if (products == null)
+            if (products.Count == 0)
             {
-                return NotFound();
+                return NotFound(products);
             }
 
             //var model = CreateProductModel(product);
@@ -55,7 +55,22 @@ namespace WebServer.Controllers
             return Ok(products);
 
         }
-        
+        [HttpGet("name/{name}")]
+        public IActionResult GetProductsByName(string name)
+        {
+            var products = _dataService.GetProductsByName(name);
+
+            if (products.Count == 0)
+            {
+                return NotFound(products);
+            }
+
+            //var model = CreateProductModel(product);
+
+            return Ok(products);
+
+        }
+
         [HttpGet("{id}", Name = nameof(GetProduct))]
         public IActionResult GetProduct(int id)
         {

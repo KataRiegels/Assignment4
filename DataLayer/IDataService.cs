@@ -15,5 +15,8 @@ namespace DataLayer
 
         IList<Product> GetProductByName(string search);
         IList<ProductSearchModel> GetProductsByCategory(int categoryId);
+        IList<ProductGetByNameModel> GetProductsByName(string search);
+
+
     }
 }

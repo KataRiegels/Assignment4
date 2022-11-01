@@ -171,16 +171,10 @@ namespace DataLayer
 
         public IList<ProductSearchModel> GetProductsByCategory(int categoryId)
         {
-            //var test = new
-            //{
-            //    productName = "",
-            //    categoryName = ""
-            //};
 
             List<ProductSearchModel> searchProducts = new List<ProductSearchModel>();
 
             IList<Product> products = _db.Products.Where(x => x.CategoryId == categoryId).ToList();
-
 
             foreach (var product in products)
             {
@@ -188,27 +182,12 @@ namespace DataLayer
                 {
                     var categoryName = GetCategory((int)product.CategoryId);
                     var test = new ProductSearchModel { name = product.Name, CategoryName = categoryName.Name };
-                    //{
-                    //    ProductName = product.Name,
-                    //CategoryName = categoryName
-                    //};
-                    //product.Category = GetCategory((int)product.CategoryId);
-
                     searchProducts.Add(test);
                 }
-               // var newProduct = ObjectMapper.Mapper.Map<ProductSearchModel>(product);
                
             }
 
-            //IList<Product> products = _db.Products.Where(x => x.CategoryId == categoryId).ToList();
 
-            //foreach (var product in products)
-            //{
-            //    if (product.CategoryId != null)
-            //    {
-            //        product.Category = GetCategory((int)product.CategoryId);
-            //    }
-            //}
 
             return searchProducts;
         }
@@ -229,6 +208,28 @@ namespace DataLayer
         }
 
 
+        public IList<ProductGetByNameModel> GetProductsByName(string productName)
+        {
+
+            List<ProductGetByNameModel> searchProducts = new List<ProductGetByNameModel>();
+
+            IList<Product> products = _db.Products.Where(x => x.Name.Contains(productName)).ToList();
+
+            foreach (var product in products)
+            {
+                if (product.CategoryId != null)
+                {
+                    var categoryName = GetCategory((int)product.CategoryId);
+                    var tempModel = new ProductGetByNameModel { productName = product.Name, CategoryName = categoryName.Name };
+                    searchProducts.Add(tempModel);
+                }
+
+            }
+
+
+
+            return searchProducts;
+        }
 
 
         /* ORDERS  */
