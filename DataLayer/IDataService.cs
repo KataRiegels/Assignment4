@@ -14,5 +14,6 @@ namespace DataLayer
         bool DeleteCategory(int id);
 
         IList<Product> GetProductByName(string search);
+        IList<ProductSearchModel> GetProductsByCategory(int categoryId);
     }
 }

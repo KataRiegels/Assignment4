@@ -40,7 +40,22 @@ namespace WebServer.Controllers
             return Ok(data);
         }
 
+        [HttpGet("category/{id}")]
+        public IActionResult GetProductsByCategory(int id)
+        {
+            var products = _dataService.GetProductsByCategory(id);
 
+            if (products == null)
+            {
+                return NotFound();
+            }
+
+            //var model = CreateProductModel(product);
+
+            return Ok(products);
+
+        }
+        
         [HttpGet("{id}", Name = nameof(GetProduct))]
         public IActionResult GetProduct(int id)
         {

@@ -173,7 +173,7 @@ namespace Assignment4.Tests
             Assert.Equal("Beverages", products.First()["categoryName"]);
             Assert.Equal("Lakkalikööri", products.Last()["name"]);
         }
-#if COMMENT
+
         [Fact]
         public void ApiProducts_CategoryInvalidId_EmptyListOfProductAndNotFound()
         {
@@ -182,7 +182,7 @@ namespace Assignment4.Tests
             Assert.Equal(HttpStatusCode.NotFound, statusCode);
             Assert.Equal(0, products.Count);
         }
-
+#if COMMENT
         [Fact]
         public void ApiProducts_NameContained_ListOfProduct()
         {

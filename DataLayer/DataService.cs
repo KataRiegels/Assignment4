@@ -33,21 +33,9 @@ namespace DataLayer
             return category;
         }
 
-
-        //public bool DeleteCategory(int id)
-        //{
-        //    var category = GetCategory(id);
-        //    if (category == null)
-        //    {
-        //        return false;
-        //    }
-        //    _db.Categories.Remove(GetCategory(id));
-        //    _db.SaveChanges();
-        //    return true;
-        //}
+        
         public bool DeleteCategory(int Id)
         {
-            using var db = new NorthwindContext();
             var category = _db.Categories.Find(Id);
             if (category != null)
             {
@@ -150,21 +138,81 @@ namespace DataLayer
             return true;
         }
 
+        //public IList<ProductByCategoryListElement>? GetProductByCategory(int inputCategoryId)
+        //{
+        //    using var db = new NorthwindContext();
+        //    var result = new List<ProductByCategoryListElement>();
 
-        public IList<Product> GetProductsByCategory(int categoryId)
+        //    foreach (var product in db
+        //                 .Products
+        //                 .Include(x => x.Category)
+        //                 .Where(x => x.CategoryId == inputCategoryId))
+        //    {
+        //        var newProduct = ObjectMapper.Mapper.Map<ProductByCategoryListElement>(product);
+        //        result.Add(newProduct);
+        //    }
+        //    return result;
+        //}
+
+        //public IList<Product> GetProductsByCategory(int categoryId)
+        //{
+        //    IList<Product> products = _db.Products.Where(x => x.CategoryId == categoryId).ToList();
+
+        //    foreach (var product in products)
+        //    {
+        //        if (product.CategoryId != null)
+        //        {
+        //            product.Category = GetCategory((int) product.CategoryId);
+        //        }
+        //    }
+
+        //    return products;
+        //}
+
+        public IList<ProductSearchModel> GetProductsByCategory(int categoryId)
         {
+            //var test = new
+            //{
+            //    productName = "",
+            //    categoryName = ""
+            //};
+
+            List<ProductSearchModel> searchProducts = new List<ProductSearchModel>();
+
             IList<Product> products = _db.Products.Where(x => x.CategoryId == categoryId).ToList();
+
 
             foreach (var product in products)
             {
                 if (product.CategoryId != null)
                 {
-                    product.Category = GetCategory((int) product.CategoryId);
+                    var categoryName = GetCategory((int)product.CategoryId);
+                    var test = new ProductSearchModel { name = product.Name, CategoryName = categoryName.Name };
+                    //{
+                    //    ProductName = product.Name,
+                    //CategoryName = categoryName
+                    //};
+                    //product.Category = GetCategory((int)product.CategoryId);
+
+                    searchProducts.Add(test);
                 }
+               // var newProduct = ObjectMapper.Mapper.Map<ProductSearchModel>(product);
+               
             }
 
-            return products;
+            //IList<Product> products = _db.Products.Where(x => x.CategoryId == categoryId).ToList();
+
+            //foreach (var product in products)
+            //{
+            //    if (product.CategoryId != null)
+            //    {
+            //        product.Category = GetCategory((int)product.CategoryId);
+            //    }
+            //}
+
+            return searchProducts;
         }
+
 
         public IList<Product> GetProductByName(string productName)
         {

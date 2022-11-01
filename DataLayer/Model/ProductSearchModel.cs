@@ -8,7 +8,7 @@ namespace DataLayer.Model
 {
     public class ProductSearchModel
     {
-        public string? ProductName { get; set; }
+        public string? name { get; set; }
         public string? CategoryName { get; set; }
     }
 }
