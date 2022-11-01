@@ -48,11 +48,11 @@ namespace DataLayer
         public bool DeleteCategory(int Id)
         {
             using var db = new NorthwindContext();
-            var category = db.Categories.Find(Id);
+            var category = _db.Categories.Find(Id);
             if (category != null)
             {
-                db.Categories.Remove(category);
-                db.SaveChanges();
+                _db.Categories.Remove(category);
+                _db.SaveChanges();
                 return true;
             }
             else

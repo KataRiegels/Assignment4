@@ -23,96 +23,96 @@ namespace Assignment4.Tests
             Assert.Equal("Seafood", data.Last()["name"]);
         }
 
-        //[Fact]
-        //public void ApiCategories_GetWithValidCategoryId_OkAndCategory()
-        //{
-        //    var (category, statusCode) = GetObject($"{CategoriesApi}/1");
+        [Fact]
+        public void ApiCategories_GetWithValidCategoryId_OkAndCategory()
+        {
+            var (category, statusCode) = GetObject($"{CategoriesApi}/1");
 
-        //    Assert.Equal(HttpStatusCode.OK, statusCode);
-        //    Assert.Equal("Beverages", category["name"]);
-        //}
+            Assert.Equal(HttpStatusCode.OK, statusCode);
+            Assert.Equal("Beverages", category["name"]);
+        }
 
-        //[Fact]
-        //public void ApiCategories_GetWithInvalidCategoryId_NotFound()
-        //{
-        //    var (_, statusCode) = GetObject($"{CategoriesApi}/0");
+        [Fact]
+        public void ApiCategories_GetWithInvalidCategoryId_NotFound()
+        {
+            var (_, statusCode) = GetObject($"{CategoriesApi}/0");
 
-        //    Assert.Equal(HttpStatusCode.NotFound, statusCode);
-        //}
+            Assert.Equal(HttpStatusCode.NotFound, statusCode);
+        }
 
-        //[Fact]
-        //public void ApiCategories_PostWithCategory_Created()
-        //{
-        //    var newCategory = new
-        //    {
-        //        Name = "Created",
-        //        Description = ""
-        //    };
-        //    var (category, statusCode) = PostData(CategoriesApi, newCategory);
+        [Fact]
+        public void ApiCategories_PostWithCategory_Created()
+        {
+            var newCategory = new
+            {
+                Name = "Created",
+                Description = ""
+            };
+            var (category, statusCode) = PostData(CategoriesApi, newCategory);
 
-        //    Assert.Equal(HttpStatusCode.Created, statusCode);
+            Assert.Equal(HttpStatusCode.Created, statusCode);
 
-        //    DeleteData($"{CategoriesApi}/{category["id"]}");
-        //}
+            DeleteData($"{CategoriesApi}/{category["id"]}");
+        }
 
-        //[Fact]
-        //public void ApiCategories_PutWithValidCategory_Ok()
-        //{
-
-
-
-        //    var data = new
-        //    {
-        //        Name = "Created",
-        //        Description = "Created"
-        //    };
-        //    var (category, _) = PostData($"{CategoriesApi}", data);
-
-        //    string id = null;
-        //    if (category["id"] == null)
-        //    {
-        //        var url = category["url"].ToString();
-        //        id = url.Substring(url.LastIndexOf('/') + 1);
-        //    }
-        //    else
-        //    {
-        //        id = category["id"].ToString();
-        //    }
+        [Fact]
+        public void ApiCategories_PutWithValidCategory_Ok()
+        {
 
 
-        //    var update = new
-        //    {
-        //        Id = category["id"],
-        //        Name = category["name"] + "Updated",
-        //        Description = category["description"] + "Updated"
-        //    };
 
-        //    var statusCode = PutData($"{CategoriesApi}/{category["id"]}", update);
+            var data = new
+            {
+                Name = "Created",
+                Description = "Created"
+            };
+            var (category, _) = PostData($"{CategoriesApi}", data);
 
-        //    Assert.Equal(HttpStatusCode.OK, statusCode);
+            string id = null;
+            if (category["id"] == null)
+            {
+                var url = category["url"].ToString();
+                id = url.Substring(url.LastIndexOf('/') + 1);
+            }
+            else
+            {
+                id = category["id"].ToString();
+            }
 
-        //    var (cat, _) = GetObject($"{CategoriesApi}/{category["id"]}");
 
-        //    Assert.Equal(category["name"] + "Updated", cat["name"]);
-        //    Assert.Equal(category["description"] + "Updated", cat["description"]);
+            var update = new
+            {
+                Id = category["id"],
+                Name = category["name"] + "Updated",
+                Description = category["description"] + "Updated"
+            };
 
-        //    DeleteData($"{CategoriesApi}/{category["id"]}");
-        //}
+            var statusCode = PutData($"{CategoriesApi}/{category["id"]}", update);
 
-        //[Fact]
-        //public void ApiCategories_PutWithInvalidCategory_NotFound()
-        //{
-        //    var update = new
-        //    {
-        //        Id = -1,
-        //        Name = "Updated",
-        //        Description = "Updated"
-        //    };
+            Assert.Equal(HttpStatusCode.OK, statusCode);
 
-        //    var statusCode = PutData($"{CategoriesApi}/-1", update);
+            var (cat, _) = GetObject($"{CategoriesApi}/{category["id"]}");
 
-        //    Assert.Equal(HttpStatusCode.NotFound, statusCode);
-        //}
+            Assert.Equal(category["name"] + "Updated", cat["name"]);
+            Assert.Equal(category["description"] + "Updated", cat["description"]);
+
+            DeleteData($"{CategoriesApi}/{category["id"]}");
+        }
+
+        [Fact]
+        public void ApiCategories_PutWithInvalidCategory_NotFound()
+        {
+            var update = new
+            {
+                Id = -1,
+                Name = "Updated",
+                Description = "Updated"
+            };
+
+            var statusCode = PutData($"{CategoriesApi}/-1", update);
+
+            Assert.Equal(HttpStatusCode.NotFound, statusCode);
+        }
 
         [Fact]
         public void ApiCategories_DeleteWithValidId_Ok()
@@ -131,58 +131,8 @@ namespace Assignment4.Tests
         }
 
 
-        //[Fact]
-        //public void ApiCategories_PutWithValidCategory_Ok()
-        //{
-
-        //    var data = new
-        //    {
-        //        Name = "Created",
-        //        Description = "Created"
-        //    };
 
 
-        //    var (category, _) = PostData($"{CategoriesApi}", data);
-
-        //    string id = null;
-        //    if (category["id"] == null)
-        //    {
-        //        var url = category["url"].ToString();
-        //        id = url.Substring(url.LastIndexOf('/') + 1);
-        //    }
-        //    else
-        //    {
-        //        id = category["id"].ToString();
-        //    }
-
-
-        //    var update = new
-        //    {
-        //        Id = category["id"],
-        //        Name = category["name"] + "Updated",
-        //        Description = category["description"] + "Updated"
-        //    };
-
-        //    var statusCode = PutData($"{CategoriesApi}/{category["id"]}", update);
-
-        //    Assert.Equal(HttpStatusCode.OK, statusCode);
-
-        //    var (cat, _) = GetObject($"{CategoriesApi}/{category["id"]}");
-
-        //    Assert.Equal(category["name"] + "Updated", cat["name"]);
-        //    Assert.Equal(category["description"] + "Updated", cat["description"]);
-
-        //    DeleteData($"{CategoriesApi}/{category["id"]}");
-
-
-        //    var (category1, _) = PostData($"{CategoriesApi}", data);
-
-        //    var statusCode1 = DeleteData($"{CategoriesApi}/{category1["id"]}");
-
-        //    Assert.Equal(HttpStatusCode.OK, statusCode1);
-        //}
-
-#if COMMENT
         [Fact]
         public void ApiCategories_DeleteWithInvalidId_NotFound()
         {
@@ -223,7 +173,7 @@ namespace Assignment4.Tests
             Assert.Equal("Beverages", products.First()["categoryName"]);
             Assert.Equal("Lakkalikööri", products.Last()["name"]);
         }
-
+#if COMMENT
         [Fact]
         public void ApiProducts_CategoryInvalidId_EmptyListOfProductAndNotFound()
         {
