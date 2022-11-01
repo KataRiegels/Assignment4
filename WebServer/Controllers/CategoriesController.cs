@@ -2,7 +2,11 @@
 using DataLayer;
 using DataLayer.Model;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
+using System;
 using WebServer.Models;
+//using Newtonsoft.Json;
+//using Newtonsoft.Json.Linq;
 
 namespace WebServer.Controllers
 {
@@ -45,13 +49,31 @@ namespace WebServer.Controllers
 
         }
 
+        //[HttpPost]
+        //public IActionResult CreateCategory(CategoryCreateModel model)
+        //{
+        //    var category = _mapper.Map<Category>(model);
+
+        //    _dataService.CreateCategory(category);
+
+        //    return CreatedAtRoute(null, CreateCategoryModel(category));
+        //}
+
+        //[HttpPost]
+        //public IActionResult CreateCategory(CategoryCreateModel model)
+        //{
+        //    var category = _mapper.Map<Category>(model);
+
+        //    category = _dataService.CreateCategory(category.Name, category.Description);
+
+        //    return CreatedAtRoute(null, category);
+        //}
+
         [HttpPost]
         public IActionResult CreateCategory(CategoryCreateModel model)
         {
-            var category = _mapper.Map<Category>(model);
 
-            _dataService.CreateCategory(category);
-
+            var category = _dataService.CreateCategory(model.Name, model.Description);
             return CreatedAtRoute(null, CreateCategoryModel(category));
         }
 
@@ -75,5 +97,30 @@ namespace WebServer.Controllers
             model.Url = _generator.GetUriByName(HttpContext, nameof(GetCategory), new { category.Id });
             return model;
         }
+
+        [HttpPut("{id}")]
+        public IActionResult PutCategory(CategoryUpdateModel model, int id)
+        {
+            var updated = _dataService.UpdateCategory(model.Id, model.Name, model.Description);
+            var category = _dataService.GetCategory(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+            //return CreatedAtRoute(null,CreateCategoryModel();
+
+        }
+        private CategoryModel UpdateCategoryModel(Category category)
+        {
+            var model = _mapper.Map<CategoryModel>(category);
+            model.Url = _generator.GetUriByName(HttpContext, nameof(GetCategory), new { category.Id });
+            return model;
+        }
+
+  
     }
+
+
 }

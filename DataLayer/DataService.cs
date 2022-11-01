@@ -20,29 +20,45 @@ namespace DataLayer
  
         }
 
-        public Category CreateCategory(Category category)
+        public Category CreateCategory(string name, string description)
         {
-            //Category category = new Category();
-            //var maxId = _db.Categories.Max(x => x.Id);
-            //category.Id = IDataService;
-            //category.Name = name;
-            //category.Description = description;
+            Category category = new Category();
+            var maxId = _db.Categories.Max(x => x.Id);
+            category.Id = maxId + 1;
+            category.Name = name;
+            category.Description = description;
             _db.Categories.Add(category);
             _db.SaveChanges();  
         
             return category;
         }
 
-        public bool DeleteCategory(int id)
+
+        //public bool DeleteCategory(int id)
+        //{
+        //    var category = GetCategory(id);
+        //    if (category == null)
+        //    {
+        //        return false;
+        //    }
+        //    _db.Categories.Remove(GetCategory(id));
+        //    _db.SaveChanges();
+        //    return true;
+        //}
+        public bool DeleteCategory(int Id)
         {
-            var category = GetCategory(id);
-            if (category == null)
+            using var db = new NorthwindContext();
+            var category = db.Categories.Find(Id);
+            if (category != null)
+            {
+                db.Categories.Remove(category);
+                db.SaveChanges();
+                return true;
+            }
+            else
             {
                 return false;
             }
-            _db.Categories.Remove(GetCategory(id));
-            _db.SaveChanges();
-            return true;
         }
 
         public bool UpdateCategory(int id, string name, string description)
