@@ -55,50 +55,50 @@ namespace Assignment4.Tests
             DeleteData($"{CategoriesApi}/{category["id"]}");
         }
 
-        //[Fact]
-        //public void ApiCategories_PutWithValidCategory_Ok()
-        //{
+        [Fact]
+        public void ApiCategories_PutWithValidCategory_Ok()
+        {
 
-        //    var data = new
-        //    {
-        //        Name = "Created",
-        //        Description = "Created"
-        //    };
-        //    var (category, _) = PostData($"{CategoriesApi}", data);
+            var data = new
+            {
+                Name = "Created",
+                Description = "Created"
+            };
+            var (category, _) = PostData($"{CategoriesApi}", data);
 
-        //    var update = new
-        //    {
-        //        Id = category["id"],
-        //        Name = category["name"] + "Updated",
-        //        Description = category["description"] + "Updated"
-        //    };
+            var update = new
+            {
+                Id = category["id"],
+                Name = category["name"] + "Updated",
+                Description = category["description"] + "Updated"
+            };
 
-        //    var statusCode = PutData($"{CategoriesApi}/{category["id"]}", update);
+            var statusCode = PutData($"{CategoriesApi}/{category["id"]}", update);
 
-        //    Assert.Equal(HttpStatusCode.OK, statusCode);
+            Assert.Equal(HttpStatusCode.OK, statusCode);
 
-        //    var (cat, _) = GetObject($"{CategoriesApi}/{category["id"]}");
+            var (cat, _) = GetObject($"{CategoriesApi}/{category["id"]}");
 
-        //    Assert.Equal(category["name"] + "Updated", cat["name"]);
-        //    Assert.Equal(category["description"] + "Updated", cat["description"]);
+            Assert.Equal(category["name"] + "Updated", cat["name"]);
+            Assert.Equal(category["description"] + "Updated", cat["description"]);
 
-        //    DeleteData($"{CategoriesApi}/{category["id"]}");
-        //}
+            DeleteData($"{CategoriesApi}/{category["id"]}");
+        }
 
-        //[Fact]
-        //public void ApiCategories_PutWithInvalidCategory_NotFound()
-        //{
-        //    var update = new
-        //    {
-        //        Id = -1,
-        //        Name = "Updated",
-        //        Description = "Updated"
-        //    };
+        [Fact]
+        public void ApiCategories_PutWithInvalidCategory_NotFound()
+        {
+            var update = new
+            {
+                Id = -1,
+                Name = "Updated",
+                Description = "Updated"
+            };
 
-        //    var statusCode = PutData($"{CategoriesApi}/-1", update);
+            var statusCode = PutData($"{CategoriesApi}/-1", update);
 
-        //    Assert.Equal(HttpStatusCode.NotFound, statusCode);
-        //}
+            Assert.Equal(HttpStatusCode.NotFound, statusCode);
+        }
 
         [Fact]
         public void ApiCategories_DeleteWithValidId_Ok()
