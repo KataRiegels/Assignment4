@@ -138,36 +138,6 @@ namespace DataLayer
             return true;
         }
 
-        //public IList<ProductByCategoryListElement>? GetProductByCategory(int inputCategoryId)
-        //{
-        //    using var db = new NorthwindContext();
-        //    var result = new List<ProductByCategoryListElement>();
-
-        //    foreach (var product in db
-        //                 .Products
-        //                 .Include(x => x.Category)
-        //                 .Where(x => x.CategoryId == inputCategoryId))
-        //    {
-        //        var newProduct = ObjectMapper.Mapper.Map<ProductByCategoryListElement>(product);
-        //        result.Add(newProduct);
-        //    }
-        //    return result;
-        //}
-
-        //public IList<Product> GetProductsByCategory(int categoryId)
-        //{
-        //    IList<Product> products = _db.Products.Where(x => x.CategoryId == categoryId).ToList();
-
-        //    foreach (var product in products)
-        //    {
-        //        if (product.CategoryId != null)
-        //        {
-        //            product.Category = GetCategory((int) product.CategoryId);
-        //        }
-        //    }
-
-        //    return products;
-        //}
 
         public IList<ProductSearchModel> GetProductsByCategory(int categoryId)
         {
@@ -250,20 +220,6 @@ namespace DataLayer
 
         }
 
-        // Returns a list of Orders - Returns all orders if shipName not defined. Otherwise, returns orders with given ShipName
-        // How it should be
-        //public IList<Order> GetOrders(string shipName = null)
-        //{
-        //    if (!string.IsNullOrEmpty(shipName))
-        //    {
-        //        //IList<Order> orders = _db.Orders.Where(x => x.ShipName == shipName).ToList();
-        //        return _db.Orders.Where(x => x.ShipName == shipName).ToList();
-
-        //    }
-        //        //IList<Order> orders = _db.Orders.ToList();
-        //    return  _db.Orders.ToList();
-
-        //}    
 
         
         // Bad version of the above, but may be what was meant in assignment

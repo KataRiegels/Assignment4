@@ -58,10 +58,6 @@ namespace DataLayer
             modelBuilder.Entity<OrderDetails>().ToTable("orderdetails");
             modelBuilder.Entity<OrderDetails>().HasKey(t => new { t.OrderId, t.ProductId });
 
-            //modelBuilder.Entity<OrderDetails>().HasMany(o => o.OrderId).WithMany(p => p.ProductId).HasForeignKey();
-            //modelBuilder.Entity<OrderDetails>().HasOne(o => o.Order).WithMany(p => p.OrderDetails);
-            //modelBuilder.Entity<OrderDetails>().HasAlternateKey(a => new { a.OrderId, a.ProductId });
-            //modelBuilder.Entity<Order>().HasMany(o => o.OrderDetails).WithRequired().HasForeignKey(od => od.OrderId);
             modelBuilder.Entity<OrderDetails>().Property(x => x.OrderId).HasColumnName("orderid");
             modelBuilder.Entity<OrderDetails>().Property(x => x.ProductId).HasColumnName("productid");
             modelBuilder.Entity<OrderDetails>().Property(x => x.UnitPrice).HasColumnName("unitprice");

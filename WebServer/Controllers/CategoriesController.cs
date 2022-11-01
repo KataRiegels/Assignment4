@@ -5,8 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using System;
 using WebServer.Models;
-//using Newtonsoft.Json;
-//using Newtonsoft.Json.Linq;
+
 
 namespace WebServer.Controllers
 {
@@ -49,25 +48,6 @@ namespace WebServer.Controllers
 
         }
 
-        //[HttpPost]
-        //public IActionResult CreateCategory(CategoryCreateModel model)
-        //{
-        //    var category = _mapper.Map<Category>(model);
-
-        //    _dataService.CreateCategory(category);
-
-        //    return CreatedAtRoute(null, CreateCategoryModel(category));
-        //}
-
-        //[HttpPost]
-        //public IActionResult CreateCategory(CategoryCreateModel model)
-        //{
-        //    var category = _mapper.Map<Category>(model);
-
-        //    category = _dataService.CreateCategory(category.Name, category.Description);
-
-        //    return CreatedAtRoute(null, category);
-        //}
 
         [HttpPost]
         public IActionResult CreateCategory(CategoryCreateModel model)
@@ -109,7 +89,6 @@ namespace WebServer.Controllers
             }
 
             return Ok();
-            //return CreatedAtRoute(null,CreateCategoryModel();
 
         }
         private CategoryModel UpdateCategoryModel(Category category)

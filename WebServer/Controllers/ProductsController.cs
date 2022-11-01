@@ -50,8 +50,6 @@ namespace WebServer.Controllers
                 return NotFound(products);
             }
 
-            //var model = CreateProductModel(product);
-
             return Ok(products);
 
         }
@@ -64,8 +62,6 @@ namespace WebServer.Controllers
             {
                 return NotFound(products);
             }
-
-            //var model = CreateProductModel(product);
 
             return Ok(products);
 
